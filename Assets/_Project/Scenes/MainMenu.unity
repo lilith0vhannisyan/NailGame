@@ -3572,6 +3572,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 756339427}
     m_Modifications:
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1912462305}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498714640214682923, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5809766438822197808, guid: e9c4b37c187fb4241ad19d954f86b16b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
