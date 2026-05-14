@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject treasureChest;
     [SerializeField] private HammerController hammerController;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip winSound;
+    [SerializeField] private AudioClip loseSound;
 
     [Header("HUD")]
     [SerializeField] private TextMeshProUGUI levelText;
@@ -243,7 +246,12 @@ public class GameManager : MonoBehaviour
             treasureChest.transform.DOPunchScale(Vector3.one * 0.35f, 0.6f, 5, 0.5f);
 
         yield return new WaitForSeconds(1f);
-        if (winPanel) winPanel.SetActive(true);
+        if (winPanel)
+        {
+            winPanel.SetActive(true);
+            audioSource.PlayOneShot(winSound);
+        }
+            
     }
 
     IEnumerator LoseSequence()
@@ -273,7 +281,11 @@ public class GameManager : MonoBehaviour
         }
 
         gameLost = true;
-        if (losePanel) losePanel.SetActive(true);
+        if (losePanel)
+        {
+            audioSource.PlayOneShot(loseSound);
+            losePanel.SetActive(true);
+        }
     }
 
     public bool IsGameOver() => gameWon || gameLost || isPaused;

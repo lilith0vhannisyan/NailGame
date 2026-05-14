@@ -78,7 +78,7 @@ public class HammerBox : MonoBehaviour, IPointerClickHandler
         isCollected = true;
         Collider col = GetComponent<Collider>();
         if (col) col.enabled = false;
-
+        
         StartCoroutine(SpawnFlyingHammers());
 
         Sequence boxSeq = DOTween.Sequence();
