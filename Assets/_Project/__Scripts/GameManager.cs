@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        // Cap framerate — saves battery, reduces heat
+        Application.targetFrameRate = 30;
+        QualitySettings.vSyncCount = 0;
     }
 
     void Start()
@@ -187,6 +191,7 @@ public class GameManager : MonoBehaviour
         allBoards.Remove(b);
         CheckBoardsAndBoxesActivation();
         CheckWinCondition();
+
     }
 
     void CheckBoardsAndBoxesActivation()
@@ -242,16 +247,18 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("UnlockedLevel", currentLevel + 1);
         PlayerPrefs.Save();
 
-        if (treasureChest != null)
-            treasureChest.transform.DOPunchScale(Vector3.one * 0.35f, 0.6f, 5, 0.5f);
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(1f);
-        if (winPanel)
+        // Trigger key → chest sequence
+        if (chest != null)
+            chest.PlayOpenSequence();
+        else
         {
-            winPanel.SetActive(true);
-            audioSource.PlayOneShot(winSound);
+            if (treasureChest != null)
+                treasureChest.transform.DOPunchScale(Vector3.one * 0.35f, 0.6f, 5, 0.5f);
+            yield return new WaitForSeconds(1f);
+            if (winPanel) winPanel.SetActive(true);
         }
-            
     }
 
     IEnumerator LoseSequence()
@@ -287,7 +294,15 @@ public class GameManager : MonoBehaviour
             losePanel.SetActive(true);
         }
     }
-
+    public void OnChestOpened()
+    {
+        StartCoroutine(ShowWinAfterChest());
+    }
+    IEnumerator ShowWinAfterChest()
+    {
+        yield return new WaitForSeconds(1.5f);
+        if (winPanel) winPanel.SetActive(true);
+    }
     public bool IsGameOver() => gameWon || gameLost || isPaused;
 
     // ===== PAUSE =====

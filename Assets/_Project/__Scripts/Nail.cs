@@ -6,15 +6,12 @@ using System.Collections;
 public class Nail : MonoBehaviour, IPointerClickHandler
 {
     [Header("Floor Landing Animation")]
-    [SerializeField] private float flightDuration = 0.6f;
     [SerializeField] private float floorY = -3.5f;
-    [SerializeField] private float horizontalSpread = 1.5f;
     [SerializeField] private AudioSource nailRemovingSound;
 
     [Header("Physics Settings")]
     [SerializeField] private float finalScaleMultiplier = 0.6f;
     [SerializeField] private float lifetimeOnFloor = 2f;
-    [SerializeField] private float shrinkDuration = 0.5f;
 
     private Board parentBoard;
     private bool isRemoved = false;

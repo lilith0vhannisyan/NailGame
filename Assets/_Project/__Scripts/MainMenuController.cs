@@ -8,16 +8,17 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject levelsButtons;
     [SerializeField] private GameObject settingsButtons;
 
-    [Header("Sound Buttons")]
-    [SerializeField] private GameObject soundOnButton;     // shown when music is ON
-    [SerializeField] private GameObject soundOffButton;    // shown when music is OFF
-    [SerializeField] private AudioSource musicSource;      // optional
+    [Header("Sound")]
+    [SerializeField] private Sprite soundOnSprite;     // drag your sound ON icon
+    [SerializeField] private Sprite soundOffSprite;    // drag your sound OFF icon
+    [SerializeField] private UnityEngine.UI.Image soundButtonImage;  // the button's image
+    [SerializeField] private AudioSource musicSource;
 
     private const string MUSIC_KEY = "MusicOn";
     private const string UNLOCKED_KEY = "UnlockedLevel";
-
     void Start()
     {
+        PlayerPrefs.SetInt("UnlockedLevel", 9); // unlock all for testing
         ShowMainMenu();
         ApplyMusicSetting();
     }
@@ -51,7 +52,6 @@ public class MainMenuController : MonoBehaviour
         int unlocked = PlayerPrefs.GetInt(UNLOCKED_KEY, 1);
         SceneManager.LoadScene("Level" + unlocked);
     }
-
     public void LoadLevel(int levelNumber)
     {
         int unlocked = PlayerPrefs.GetInt(UNLOCKED_KEY, 1);
@@ -92,11 +92,22 @@ public class MainMenuController : MonoBehaviour
     void ApplyMusicSetting()
     {
         bool on = PlayerPrefs.GetInt(MUSIC_KEY, 1) == 1;
-        if (musicSource) musicSource.mute = !on;
-        if (soundOnButton) soundOnButton.SetActive(on);
-        if (soundOffButton) soundOffButton.SetActive(!on);
-    }
 
+        if (musicSource) musicSource.mute = !on;
+
+        if (soundButtonImage != null)
+            soundButtonImage.sprite = on ? soundOnSprite : soundOffSprite;
+    }
+    public void ToggleSound()
+    {
+        bool isOn = PlayerPrefs.GetInt(MUSIC_KEY, 1) == 1;
+        bool newState = !isOn;
+
+        PlayerPrefs.SetInt(MUSIC_KEY, newState ? 1 : 0);
+        PlayerPrefs.Save();
+
+        ApplyMusicSetting();
+    }
     public void ResetProgress()
     {
         PlayerPrefs.DeleteAll();
