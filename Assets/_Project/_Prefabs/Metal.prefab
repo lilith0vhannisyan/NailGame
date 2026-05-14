@@ -55,5 +55,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9a9009edbdcd8e45affb7d9f911dadb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1218409329881102797}
   m_SourcePrefab: {fileID: 100100000, guid: f9a9009edbdcd8e45affb7d9f911dadb, type: 3}
+--- !u!1 &3632478346934036693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f9a9009edbdcd8e45affb7d9f911dadb, type: 3}
+  m_PrefabInstance: {fileID: 4514944519195596164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1218409329881102797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632478346934036693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad530a03a2688f418864b37b1032abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Board
+  nails: []
+  isInitiallyActive: 0
+  prerequisiteBoards: []
+  fallDuration: 1
+  zoomInAmount: 1.2
+  fallDistance: 15
