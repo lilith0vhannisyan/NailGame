@@ -7,6 +7,8 @@ public class Chest : MonoBehaviour
     [Tooltip("If ANY ONE of these boards is removed → WIN")]
     public List<Board> requiredBoards = new List<Board>();
 
+
+    [SerializeField] private Animator animator;
     void Start()
     {
         GameManager.Instance.RegisterChest(this);
@@ -21,7 +23,11 @@ public class Chest : MonoBehaviour
         {
             // null = destroyed = removed ✅
             if (b == null || b.IsRemoved())
+            {
+                animator.SetTrigger("Open");
                 return true;    // ← ANY ONE is enough
+            }
+
         }
         return false;
     }
