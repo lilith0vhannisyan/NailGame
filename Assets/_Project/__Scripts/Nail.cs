@@ -9,6 +9,7 @@ public class Nail : MonoBehaviour, IPointerClickHandler
     [SerializeField] private float flightDuration = 0.6f;
     [SerializeField] private float floorY = -3.5f;
     [SerializeField] private float horizontalSpread = 1.5f;
+    [SerializeField] private AudioSource nailRemovingSound;
 
     [Header("Physics Settings")]
     [SerializeField] private float finalScaleMultiplier = 0.6f;
@@ -77,6 +78,7 @@ public class Nail : MonoBehaviour, IPointerClickHandler
             parentBoard.OnNailRemoved(this);
 
         PlayRemoveAnim();
+        nailRemovingSound.Play();
     }
 
     void PlayRemoveAnim()
