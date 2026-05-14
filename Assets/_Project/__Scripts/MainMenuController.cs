@@ -18,7 +18,7 @@ public class MainMenuController : MonoBehaviour
     private const string UNLOCKED_KEY = "UnlockedLevel";
     void Start()
     {
-        PlayerPrefs.SetInt("UnlockedLevel", 9); // unlock all for testing
+      
         ShowMainMenu();
         ApplyMusicSetting();
     }
