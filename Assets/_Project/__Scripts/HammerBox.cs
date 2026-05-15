@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 
 public class HammerBox : MonoBehaviour, IPointerClickHandler
 {
@@ -11,10 +12,14 @@ public class HammerBox : MonoBehaviour, IPointerClickHandler
     public List<Board> prerequisiteBoards = new List<Board>();
 
     [Header("Visuals")]
+    [SerializeField] private TMP_Text hammersToBeGivven;
     [SerializeField] private GameObject flyingHammerPrefab;
     [SerializeField] private float flightDuration = 0.7f;
     [SerializeField] private float arcHeight = 2f;
     [SerializeField] private float delayBetweenHammers = 0.1f;
+
+    [Header("Sound")]
+    [SerializeField] private AudioSource audioSource;
 
     private bool isActive = false;
     private bool isCollected = false;
@@ -25,6 +30,7 @@ public class HammerBox : MonoBehaviour, IPointerClickHandler
     {
         SetLocked(true);
         GameManager.Instance.RegisterHammerBox(this);
+        hammersToBeGivven.text = "+" + hammerReward;
 
         Debug.Log("HAMMERBOX START: layer=" + LayerMask.LayerToName(gameObject.layer) +
                   " prereqs=" + prerequisiteBoards.Count +
@@ -78,7 +84,9 @@ public class HammerBox : MonoBehaviour, IPointerClickHandler
         isCollected = true;
         Collider col = GetComponent<Collider>();
         if (col) col.enabled = false;
-        
+
+        audioSource.Play();
+
         StartCoroutine(SpawnFlyingHammers());
 
         Sequence boxSeq = DOTween.Sequence();

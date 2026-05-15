@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Chest : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Chest : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private ParticleSystem coinParticle;
+    //[SerializeField] private AudioClip chestOpenningSound;
     // Remove keyAnimator SerializeField — find it automatically instead
 
     private KeyAnimator keyAnimator;
@@ -42,7 +46,19 @@ public class Chest : MonoBehaviour
     public void OpenChest()
     {
         if (animator != null)
+        {
             animator.SetTrigger("Open");
+            audioSource.Play();
+            coinParticle.Play();
+        }
+
         GameManager.Instance.OnChestOpened();
     }
+
+    IEnumerator CoinParticles()
+    {
+        yield return new WaitForSeconds(0.1f);
+        coinParticle.Play();
+    }
+    
 }

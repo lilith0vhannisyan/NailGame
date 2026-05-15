@@ -257,7 +257,14 @@ public class GameManager : MonoBehaviour
             if (treasureChest != null)
                 treasureChest.transform.DOPunchScale(Vector3.one * 0.35f, 0.6f, 5, 0.5f);
             yield return new WaitForSeconds(1f);
-            if (winPanel) winPanel.SetActive(true);
+            if (winPanel)
+            {
+                if (audioSource != null && winSound != null)
+                    audioSource.PlayOneShot(winSound);
+                winPanel.SetActive(true);
+            }
+                
+
         }
     }
 
@@ -301,7 +308,16 @@ public class GameManager : MonoBehaviour
     IEnumerator ShowWinAfterChest()
     {
         yield return new WaitForSeconds(1.5f);
-        if (winPanel) winPanel.SetActive(true);
+        if (winPanel)
+        {
+            winPanel.SetActive(true);
+            if (audioSource && winSound)
+            {
+                audioSource.PlayOneShot(winSound);
+            }
+        }
+
+
     }
     public bool IsGameOver() => gameWon || gameLost || isPaused;
 
